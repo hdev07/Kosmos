@@ -10,33 +10,334 @@
 </head>
 
 <body>
-  <div>
-    <div class="p-4">
-      <p class="text-center ">Ejercicio</p>
-    </div>
+  <div class="p-4">
+    <p class="text-center">Ejercicio Kosmos</p>
 
-    <div>
-      <div class="d-flex justify-content-between">
-        <select id="typePayroll" class="m-2 form-select" aria-label="Selcciona el tipo nomina">
-          <option selected> Selcciona el tipo nomina</option>
-          <option value="A">Tipo A</option>
-          <option value="B">Tipo B</option>
-          <option value="C">Tipo C</option>
-          <option value="D">Tipo D</option>
-        </select>
-        <div class="m-2 input-group">
-          <span class="input-group-text">Fecha Primer Empleo</span>
-          <input id="date" type="date" aria-label="First name" class="form-control">
-        </div>
-        <select id="gender" class="m-2 form-select" aria-label="Selcciona el Genero">
-          <option selected> Selcciona el Genero</option>
-          <option value="M">Masculino</option>
-          <option value="F">Femenino</option>
-        </select>
-        <button type="button" class="btn btn-outline-dark btn-sm"
-          onclick="calculoMotor(document.getElementById('typePayroll').value, document.getElementById('date').value, document.getElementById('gender').value)">Dark</button>
+    <div class="d-flex justify-content-between sm:d-block">
+      <select id="typePayrollValue" class="m-2 form-select" aria-label="Selecciona el tipo nomina">
+        <option selected> Selcciona el tipo nomina</option>
+        <option value="A">Tipo A</option>
+        <option value="B">Tipo B</option>
+        <option value="C">Tipo C</option>
+        <option value="D">Tipo D</option>
+      </select>
+      <div class="m-2 input-group">
+        <span class="input-group-text">Fecha Primer Empleo</span>
+        <input id="dateValue" type="date" aria-label="First name" class="form-control">
       </div>
+      <select id="genderValue" class="m-2 form-select" aria-label="Selecciona el Genero">
+        <option selected> Selcciona el Genero</option>
+        <option value="M">Masculino</option>
+        <option value="F">Femenino</option>
+      </select>
+      <button type="button" class="btn btn-outline-dark btn-sm"
+        onclick="calculoMotor(document.getElementById('typePayrollValue').value, document.getElementById('dateValue').value, document.getElementById('genderValue').value)">Calcular
+        credito</button>
     </div>
+    <br>
+
+    <table class="table table-hover" id="Result">
+      <thead>
+        <tr class="text-center table-dark">
+          <th colspan="6" class="text-center">
+            <b>Resultados de crédito Dinamicos</b>.
+          </th>
+        </tr>
+        <tr class="text-center">
+          <th scope="col">Tipo nomina</th>
+          <th scope="col">Fecha Desde el Primer Empleo</th>
+          <th scope="col">Genero</th>
+          <th scope="col">Monto Minimo de Credito</th>
+          <th scope="col">Monto Máximo de Crédito</th>
+          <th scope="col">Linea Optima de Crédito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <td id="typePayroll"></td>
+          <td id="date"></td>
+          <td id="gender"></td>
+          <td id="minimumCreditAmount"></td>
+          <td id="maximumCreditAmount"></td>
+          <td id="optimalLineofCredit"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-hover" id="MontoMinMasculino">
+      <thead>
+        <tr class="text-center table-dark">
+          <th colspan="6" class="text-center">
+            <b>Resultados de crédito</b>.
+          </th>
+        </tr>
+        <tr class="text-center">
+          <th scope="col">Tipo nomina</th>
+          <th scope="col">Fecha Desde el Primer Empleo</th>
+          <th scope="col">Genero</th>
+          <th scope="col">Monto Minimo de Credito</th>
+          <th scope="col">Monto Máximo de Crédito</th>
+          <th scope="col">Linea Optima de Crédito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <td>A</td>
+          <td>12/06/2022</td>
+          <td>F</td>
+          <td>800</td>
+          <td>4000</td>
+          <td>856.569</td>
+        </tr>
+        <tr class="text-center">
+          <td>B</td>
+          <td>30/12/1993</td>
+          <td>F</td>
+          <td>700</td>
+          <td>4400</td>
+          <td>760.828</td>
+        </tr>
+        <tr class="text-center">
+          <td>C</td>
+          <td>19/09/20</td>
+          <td>M</td>
+          <td>400</td>
+          <td>5000</td>
+          <td>467.823</td>
+        </tr>
+        <tr class="text-center">
+          <td>D</td>
+          <td>15/01/2019</td>
+          <td>M</td>
+          <td>1000</td>
+          <td>4300</td>
+          <td>1057.445</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-hover" id="MontoMinMasculino">
+      <thead>
+        <tr class="text-center table-dark">
+          <th colspan="5" class="text-center">
+            <b>Monto mínimo</b> de crédito en función del tipo de nómina y el número de meses desde el primer empleo
+            para
+            el género <b>masculino</b>.
+          </th>
+        </tr>
+        <tr class="text-center">
+          <th scope="col">Meses desde el primer empleo</th>
+          <th scope="col">A</th>
+          <th scope="col">B</th>
+          <th scope="col">C</th>
+          <th scope="col">D</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <th scope="row">[0-26]</th>
+          <td>100</td>
+          <td>1000</td>
+          <td>400</td>
+          <td>400</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">27</th>
+          <td>400</td>
+          <td>600</td>
+          <td>200</td>
+          <td>300</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">28</th>
+          <td>900</td>
+          <td>1000</td>
+          <td>200</td>
+          <td>500</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">29</th>
+          <td>100</td>
+          <td>1000</td>
+          <td>1000</td>
+          <td>900</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">[30 - inf]</th>
+          <td>600</td>
+          <td>1000</td>
+          <td>600</td>
+          <td>1000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-hover">
+      <thead>
+        <tr class="text-center table-dark">
+          <th colspan="5" class="text-center">
+            <b>Monto mínimo</b> de crédito en función del tipo de nómina y el número de meses desde el
+            primer empleo para el género <b>femenino</b>.
+          </th>
+        </tr>
+        <tr class="text-center">
+          <th scope="col">Meses desde el primer empleo</th>
+          <th scope="col">A</th>
+          <th scope="col">B</th>
+          <th scope="col">C</th>
+          <th scope="col">D</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <th scope="row">[0-24]</th>
+          <td>800</td>
+          <td>800</td>
+          <td>200</td>
+          <td>500</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">25</th>
+          <td>800</td>
+          <td>700</td>
+          <td>900</td>
+          <td>1000</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">26</th>
+          <td>800</td>
+          <td>100</td>
+          <td>700</td>
+          <td>600</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">27</th>
+          <td>600</td>
+          <td>600</td>
+          <td>800</td>
+          <td>400</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">[28 - inf]</th>
+          <td>200</td>
+          <td>700</td>
+          <td>100</td>
+          <td>700</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-hover">
+      <thead>
+        <tr class="text-center table-dark">
+          <th colspan="5" class="text-center">
+            <b>Monto máximo</b> de crédito en función del tipo de nómina y el número de meses desde el
+            primer empleo para el género <b>masculino</b>.
+          </th>
+        </tr>
+        <tr class="text-center">
+          <th scope="col">Meses desde el primer empleo</th>
+          <th scope="col">A</th>
+          <th scope="col">B</th>
+          <th scope="col">C</th>
+          <th scope="col">D</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="text-center">
+          <th scope="row">[0-26]</th>
+          <td>4900</td>
+          <td>4700</td>
+          <td>5000</td>
+          <td>4400</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">27</th>
+          <td>4700</td>
+          <td>4400</td>
+          <td>4700</td>
+          <td>4700</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">28</th>
+          <td>4600</td>
+          <td>5000</td>
+          <td>5000</td>
+          <td>4300</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">29</th>
+          <td>4600</td>
+          <td>4400</td>
+          <td>4200</td>
+          <td>4900</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">[30 - inf]</th>
+          <td>4500</td>
+          <td>4900</td>
+          <td>4600</td>
+          <td>4300</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-hover">
+      <thead>
+        <tr class="text-center table-dark">
+          <th colspan="5" class="text-center">
+            <b>Monto máximo</b> de crédito en función del tipo de nómina y el número de meses desde el
+            primer empleo para el género <b>femenino</b>.
+          </th>
+        </tr>
+        <tr class="text-center">
+          <th scope="col">Meses desde el primer empleo</th>
+          <th scope="col">A</th>
+          <th scope="col">B</th>
+          <th scope="col">C</th>
+          <th scope="col">D</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <th scope="row">[0-24]</th>
+          <td>4000</td>
+          <td>4700</td>
+          <td>4600</td>
+          <td>5000</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">25</th>
+          <td>4200</td>
+          <td>4200</td>
+          <td>4900</td>
+          <td>4900</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">26</th>
+          <td>4100</td>
+          <td>4500</td>
+          <td>4600</td>
+          <td>4700</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">27</th>
+          <td>4200</td>
+          <td>4300</td>
+          <td>4700</td>
+          <td>5000</td>
+        </tr>
+        <tr class="text-center">
+          <th scope="row">[28 - inf]</th>
+          <td>4500</td>
+          <td>4400</td>
+          <td>4000</td>
+          <td>4300</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 
   </div>
