@@ -4,7 +4,6 @@ function calculoMotor(typePayroll, day, gender) {
   let genero = gender;
   let today = new Date();
   let diffmeses = calcularDiferenciaMeses(new Date(fechaPrimerEmpleo), today);
-  console.log(tipoNomina, fechaPrimerEmpleo, genero, diffmeses);
   let montoMinimoCreditoMasculino = 0;
   let montoMaximoCreditoMasculino = 0;
   let montoMinimoCreditoFemenino = 0;
@@ -64,11 +63,6 @@ function calculoMotor(typePayroll, day, gender) {
         ? (this.montoMinimoCreditoMasculino = 1000)
         : console.error("Error");
     }
-    console.log(
-      "montoMinimoCreditoMasculino: ",
-      this.montoMinimoCreditoMasculino
-    );
-
     if (typePayroll === "A" && gender === "M") {
       diffmeses <= 26
         ? (this.montoMaximoCreditoMasculino = 4900)
@@ -121,10 +115,6 @@ function calculoMotor(typePayroll, day, gender) {
         ? (this.montoMaximoCreditoMasculino = 4300)
         : console.error("Error");
     }
-    console.log(
-      "montoMaximoCreditoMasculino: ",
-      this.montoMaximoCreditoMasculino
-    );
 
     let p1Masculino =
       this.montoMinimoCreditoMasculino +
@@ -136,9 +126,17 @@ function calculoMotor(typePayroll, day, gender) {
       0.0175 * this.montoMaximoCreditoMasculino -
       this.montoMinimoCreditoMasculino;
 
-    console.log("result", p1Masculino);
-    console.log("result", p2Masculino);
-    console.log(Math.max(p1Masculino, p2Masculino));
+    this.optimalLineOfCredit = Math.max(p1Masculino, p2Masculino);
+
+    document.getElementById("typePayroll").innerHTML = tipoNomina;
+    document.getElementById("date").innerHTML = fechaPrimerEmpleo;
+    document.getElementById("gender").innerHTML = genero;
+    document.getElementById("minimumCreditAmount").innerHTML =
+      this.montoMinimoCreditoMasculino;
+    document.getElementById("maximumCreditAmount").innerHTML =
+      this.montoMaximoCreditoMasculino;
+    document.getElementById("optimalLineofCredit").innerHTML =
+      this.optimalLineOfCredit;
   } else {
     if (typePayroll === "A" && gender === "F") {
       diffmeses <= 24
@@ -192,11 +190,6 @@ function calculoMotor(typePayroll, day, gender) {
         ? (this.montoMinimoCreditoFemenino = 700)
         : console.error("Error");
     }
-    console.log(
-      "montoMinimoCreditoFemenino: ",
-      this.montoMinimoCreditoFemenino
-    );
-
     if (typePayroll === "A" && gender === "F") {
       diffmeses <= 24
         ? (this.montoMaximoCreditoFemenino = 4000)
@@ -249,10 +242,7 @@ function calculoMotor(typePayroll, day, gender) {
         ? (this.montoMaximoCreditoFemenino = 4300)
         : console.error("Error");
     }
-    console.log(
-      "montoMaximoCreditoFemenino: ",
-      this.montoMaximoCreditoFemenino
-    );
+
     let p1Femenino =
       this.montoMinimoCreditoFemenino +
       Math.sqrt(
@@ -262,10 +252,17 @@ function calculoMotor(typePayroll, day, gender) {
       this.montoMinimoCreditoFemenino +
       0.0175 * this.montoMaximoCreditoFemenino -
       this.montoMinimoCreditoFemenino;
+    this.optimalLineOfCredit = Math.max(p1Femenino, p2Femenino);
 
-    console.log("result", p1Femenino);
-    console.log("result", p2Femenino);
-    console.log(Math.max(p1Femenino, p2Femenino));
+    document.getElementById("typePayroll").innerHTML = tipoNomina;
+    document.getElementById("date").innerHTML = fechaPrimerEmpleo;
+    document.getElementById("gender").innerHTML = genero;
+    document.getElementById("minimumCreditAmount").innerHTML =
+      this.montoMinimoCreditoFemenino;
+    document.getElementById("maximumCreditAmount").innerHTML =
+      this.montoMaximoCreditoFemenino;
+    document.getElementById("optimalLineofCredit").innerHTML =
+      this.optimalLineOfCredit;
   }
 }
 

@@ -14,7 +14,7 @@
     <p class="text-center">Ejercicio Kosmos</p>
 
     <div class="d-flex justify-content-between sm:d-block">
-      <select id="typePayroll" class="m-2 form-select" aria-label="Selecciona el tipo nomina">
+      <select id="typePayrollValue" class="m-2 form-select" aria-label="Selecciona el tipo nomina">
         <option selected> Selcciona el tipo nomina</option>
         <option value="A">Tipo A</option>
         <option value="B">Tipo B</option>
@@ -23,17 +23,98 @@
       </select>
       <div class="m-2 input-group">
         <span class="input-group-text">Fecha Primer Empleo</span>
-        <input id="date" type="date" aria-label="First name" class="form-control">
+        <input id="dateValue" type="date" aria-label="First name" class="form-control">
       </div>
-      <select id="gender" class="m-2 form-select" aria-label="Selecciona el Genero">
+      <select id="genderValue" class="m-2 form-select" aria-label="Selecciona el Genero">
         <option selected> Selcciona el Genero</option>
         <option value="M">Masculino</option>
         <option value="F">Femenino</option>
       </select>
       <button type="button" class="btn btn-outline-dark btn-sm"
-        onclick="calculoMotor(document.getElementById('typePayroll').value, document.getElementById('date').value, document.getElementById('gender').value)">Dark</button>
+        onclick="calculoMotor(document.getElementById('typePayrollValue').value, document.getElementById('dateValue').value, document.getElementById('genderValue').value)">Calcular
+        credito</button>
     </div>
     <br>
+
+    <table class="table table-hover" id="Result">
+      <thead>
+        <tr class="text-center table-dark">
+          <th colspan="6" class="text-center">
+            <b>Resultados de crédito Dinamicos</b>.
+          </th>
+        </tr>
+        <tr class="text-center">
+          <th scope="col">Tipo nomina</th>
+          <th scope="col">Fecha Desde el Primer Empleo</th>
+          <th scope="col">Genero</th>
+          <th scope="col">Monto Minimo de Credito</th>
+          <th scope="col">Monto Máximo de Crédito</th>
+          <th scope="col">Linea Optima de Crédito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <td id="typePayroll"></td>
+          <td id="date"></td>
+          <td id="gender"></td>
+          <td id="minimumCreditAmount"></td>
+          <td id="maximumCreditAmount"></td>
+          <td id="optimalLineofCredit"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-hover" id="MontoMinMasculino">
+      <thead>
+        <tr class="text-center table-dark">
+          <th colspan="6" class="text-center">
+            <b>Resultados de crédito</b>.
+          </th>
+        </tr>
+        <tr class="text-center">
+          <th scope="col">Tipo nomina</th>
+          <th scope="col">Fecha Desde el Primer Empleo</th>
+          <th scope="col">Genero</th>
+          <th scope="col">Monto Minimo de Credito</th>
+          <th scope="col">Monto Máximo de Crédito</th>
+          <th scope="col">Linea Optima de Crédito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <td>A</td>
+          <td>12/06/2022</td>
+          <td>F</td>
+          <td>800</td>
+          <td>4000</td>
+          <td>856.569</td>
+        </tr>
+        <tr class="text-center">
+          <td>B</td>
+          <td>30/12/1993</td>
+          <td>F</td>
+          <td>700</td>
+          <td>4400</td>
+          <td>760.828</td>
+        </tr>
+        <tr class="text-center">
+          <td>C</td>
+          <td>19/09/20</td>
+          <td>M</td>
+          <td>400</td>
+          <td>5000</td>
+          <td>467.823</td>
+        </tr>
+        <tr class="text-center">
+          <td>D</td>
+          <td>15/01/2019</td>
+          <td>M</td>
+          <td>1000</td>
+          <td>4300</td>
+          <td>1057.445</td>
+        </tr>
+      </tbody>
+    </table>
 
     <table class="table table-hover" id="MontoMinMasculino">
       <thead>
